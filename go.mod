@@ -1,4 +1,4 @@
-module gopkg.in/tucnak/telebot.v2
+module gopkg.in/lightningtipbot/telebot.v2 
 
 go 1.13
 
