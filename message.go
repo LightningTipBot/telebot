@@ -9,7 +9,7 @@ import (
 type Message struct {
 	ID int `json:"message_id"`
 
-	InlineID string `json:"-"`
+	InlineID string `json:"inline_message_id"`
 
 	// For message sent to channels, Sender will be nil
 	Sender *User `json:"from"`
@@ -91,10 +91,10 @@ type Message struct {
 
 	// For a photo, all available sizes (thumbnails).
 	Photo *Photo `json:"photo"`
-	
+
 	// For a game, information about it.
 	Game *Game `json:"game"`
-	
+
 	// For a sticker, information about it.
 	Sticker *Sticker `json:"sticker"`
 
