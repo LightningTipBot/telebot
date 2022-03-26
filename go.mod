@@ -1,4 +1,4 @@
-module github.com/LightningTipBot/telebot
+module gopkg.in/lightningtipbot/telebot.v3
 
 go 1.13
 
