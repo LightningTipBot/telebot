@@ -80,12 +80,13 @@ type InlineButton struct {
 	// It will be used as a callback endpoint.
 	Unique string `json:"unique,omitempty"`
 
-	Text            string `json:"text"`
-	URL             string `json:"url,omitempty"`
-	Data            string `json:"callback_data,omitempty"`
-	InlineQuery     string `json:"switch_inline_query,omitempty"`
-	InlineQueryChat string `json:"switch_inline_query_current_chat"`
-	Login           *Login `json:"login_url,omitempty"`
+	Text            string      `json:"text"`
+	URL             string      `json:"url,omitempty"`
+	Data            string      `json:"callback_data,omitempty"`
+	InlineQuery     string      `json:"switch_inline_query,omitempty"`
+	InlineQueryChat string      `json:"switch_inline_query_current_chat,omitempty"`
+	Login           *Login      `json:"login_url,omitempty"`
+	WebApp          *WebAppInfo `json:"web_app,omitempty"`
 }
 
 // With returns a copy of the button with data.
@@ -97,6 +98,7 @@ func (t *InlineButton) With(data string) *InlineButton {
 		InlineQuery:     t.InlineQuery,
 		InlineQueryChat: t.InlineQueryChat,
 		Login:           t.Login,
+		WebApp:          t.WebApp,
 		Data:            data,
 	}
 }

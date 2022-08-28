@@ -297,6 +297,12 @@ func (s *Sticker) MediaFile() *File {
 	return &s.File
 }
 
+// WebAppData object represents a Web app response
+type WebAppData struct {
+	Data       string `json:"data"`
+	ButtonText string `json:"button_text"`
+}
+
 // Contact object represents a contact to Telegram user.
 type Contact struct {
 	PhoneNumber string `json:"phone_number"`

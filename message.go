@@ -46,6 +46,9 @@ type Message struct {
 	// Message is a channel post that was automatically forwarded to the connected discussion group.
 	AutomaticForward bool `json:"is_automatic_forward"`
 
+	// Message is a web app data response.
+	WebAppData *WebAppData `json:"web_app_data,omitempty"`
+
 	// For replies, ReplyTo represents the original message.
 	//
 	// Note that the Message object in this field will not
