@@ -169,9 +169,10 @@ func (r *ReplyMarkup) copy() *ReplyMarkup {
 type ReplyButton struct {
 	Text string `json:"text"`
 
-	Contact  bool     `json:"request_contact,omitempty"`
-	Location bool     `json:"request_location,omitempty"`
-	Poll     PollType `json:"request_poll,omitempty"`
+	Contact  bool        `json:"request_contact,omitempty"`
+	Location bool        `json:"request_location,omitempty"`
+	Poll     PollType    `json:"request_poll,omitempty"`
+	WebApp   *WebAppInfo `json:"web_app,omitempty"`
 }
 
 // MarshalJSON implements json.Marshaler. It allows to pass
@@ -287,18 +288,23 @@ func (r *ReplyMarkup) Login(text string, login *Login) Btn {
 	return Btn{Login: login, Text: text}
 }
 
+type WebAppInfo struct {
+	Url string `json:"url,omitempty"`
+}
+
 // Btn is a constructor button, which will later become either a reply, or an inline button.
 type Btn struct {
-	Unique          string   `json:"unique,omitempty"`
-	Text            string   `json:"text,omitempty"`
-	URL             string   `json:"url,omitempty"`
-	Data            string   `json:"callback_data,omitempty"`
-	InlineQuery     string   `json:"switch_inline_query,omitempty"`
-	InlineQueryChat string   `json:"switch_inline_query_current_chat,omitempty"`
-	Contact         bool     `json:"request_contact,omitempty"`
-	Location        bool     `json:"request_location,omitempty"`
-	Poll            PollType `json:"request_poll,omitempty"`
-	Login           *Login   `json:"login_url,omitempty"`
+	Unique          string      `json:"unique,omitempty"`
+	Text            string      `json:"text,omitempty"`
+	URL             string      `json:"url,omitempty"`
+	Data            string      `json:"callback_data,omitempty"`
+	InlineQuery     string      `json:"switch_inline_query,omitempty"`
+	InlineQueryChat string      `json:"switch_inline_query_current_chat,omitempty"`
+	Contact         bool        `json:"request_contact,omitempty"`
+	Location        bool        `json:"request_location,omitempty"`
+	Poll            PollType    `json:"request_poll,omitempty"`
+	Login           *Login      `json:"login_url,omitempty"`
+	WebApp          *WebAppInfo `json:"web_app,omitempty"`
 }
 
 func (b Btn) Inline() *InlineButton {
@@ -310,6 +316,7 @@ func (b Btn) Inline() *InlineButton {
 		InlineQuery:     b.InlineQuery,
 		InlineQueryChat: b.InlineQueryChat,
 		Login:           b.Login,
+		WebApp:          b.WebApp,
 	}
 }
 
@@ -323,6 +330,7 @@ func (b Btn) Reply() *ReplyButton {
 		Contact:  b.Contact,
 		Location: b.Location,
 		Poll:     b.Poll,
+		WebApp:   b.WebApp,
 	}
 }
 
